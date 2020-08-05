@@ -1,2 +1,4 @@
-# checkingBack
-  Imagine you have userNumber assigned to user account and details of his projects are in remote server. Where you can connect by REST API's, so u should create your own REST API by using Spring Boot + Hibernate to integrate external service. We'll do some simulations on projects details so you're asked to save its response data into db and it should be done in streaming mode - you can use APACHE SPARK for this objective. 
+
+This application intended to pull Data from external API, and write to local database.  
+Every 5 seconds, it sends request to external API and get data.  
+If any information updated or deleted on the sender side, consumer side will update database.  
