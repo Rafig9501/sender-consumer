@@ -54,13 +54,10 @@ public class UserScheduler {
 
             List<UserEntity> userSaved = userService.saveUserList(externalUsers);
 
-            List<PhoneEntity> phones = userSaved.stream().map(new Function<UserEntity, Set<PhoneEntity>>() {
-                @Override
-                public Set<PhoneEntity> apply(UserEntity userEntity) {
-                    Set<PhoneEntity> phones = userEntity.getPhoneEntityNumbers();
-                    phones.forEach(p -> p.setUserEntity(userEntity));
-                    return phones;
-                }
+            List<PhoneEntity> phones = userSaved.stream().map(u -> {
+                Set<PhoneEntity> phones1 = u.getPhoneEntityNumbers();
+                phones1.forEach(p -> p.setUserEntity(u));
+                return phones1;
             })
                     .map((Function<Set<PhoneEntity>, List<PhoneEntity>>) ArrayList::new)
                     .flatMap((Function<List<PhoneEntity>, Stream<PhoneEntity>>) Collection::stream)
